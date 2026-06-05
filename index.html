@@ -28,7 +28,6 @@
       overflow-x: hidden;
     }
 
-    /* Stars background */
     body::before {
       content: '';
       position: fixed;
@@ -66,7 +65,8 @@
       z-index: 1;
     }
 
-    /* Hero */
+    section { padding: 80px 0; }
+
     .hero {
       min-height: 100vh;
       display: flex;
@@ -136,7 +136,7 @@
       border-radius: 100px;
       font-size: 0.9rem;
       color: var(--text-muted);
-      margin-bottom: 40px;
+      margin-bottom: 16px;
     }
 
     .role .dot {
@@ -163,7 +163,7 @@
       border-radius: 12px;
       font-size: 0.85rem;
       color: var(--accent);
-      margin-bottom: 48px;
+      margin-bottom: 40px;
       font-family: 'JetBrains Mono', monospace;
     }
 
@@ -211,11 +211,6 @@
       transform: translateY(-2px);
     }
 
-    /* Sections */
-    section {
-      padding: 80px 0;
-    }
-
     .section-label {
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.75rem;
@@ -231,7 +226,6 @@
       margin-bottom: 40px;
     }
 
-    /* About */
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -246,28 +240,14 @@
       transition: border-color 0.2s;
     }
 
-    .card:hover {
-      border-color: var(--accent);
-    }
+    .card:hover { border-color: var(--accent); }
 
-    .card-icon {
-      font-size: 1.5rem;
-      margin-bottom: 12px;
-    }
+    .card-icon { font-size: 1.5rem; margin-bottom: 12px; }
 
-    .card h3 {
-      font-size: 1rem;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
+    .card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 8px; }
 
-    .card p {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      line-height: 1.6;
-    }
+    .card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
 
-    /* Skills */
     .skills-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
@@ -285,17 +265,10 @@
       transition: all 0.2s;
     }
 
-    .skill:hover {
-      border-color: var(--accent);
-      transform: translateY(-2px);
-    }
+    .skill:hover { border-color: var(--accent); transform: translateY(-2px); }
 
-    .skill .skill-icon {
-      font-size: 1.3rem;
-      margin-bottom: 6px;
-    }
+    .skill .skill-icon { font-size: 1.3rem; margin-bottom: 6px; }
 
-    /* Galileo section */
     .galileo-section {
       background: linear-gradient(135deg, rgba(124,106,247,0.08), rgba(168,85,247,0.04));
       border: 1px solid rgba(124,106,247,0.15);
@@ -304,24 +277,12 @@
       text-align: center;
     }
 
-    .galileo-logo {
-      font-size: 3rem;
-      margin-bottom: 20px;
-    }
+    .galileo-logo { font-size: 3rem; margin-bottom: 20px; }
 
-    .galileo-section h2 {
-      font-size: 1.6rem;
-      margin-bottom: 12px;
-    }
+    .galileo-section h2 { font-size: 1.6rem; margin-bottom: 12px; }
 
-    .galileo-section p {
-      color: var(--text-muted);
-      max-width: 500px;
-      margin: 0 auto 28px;
-      line-height: 1.7;
-    }
+    .galileo-section p { color: var(--text-muted); max-width: 500px; margin: 0 auto 28px; line-height: 1.7; }
 
-    /* Contact */
     .contact-row {
       display: flex;
       gap: 16px;
@@ -329,7 +290,94 @@
       justify-content: center;
     }
 
-    /* Footer */
+    /* GAME */
+    #game-section {
+      padding: 40px 0 80px;
+    }
+
+    .game-wrapper {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .game-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .game-hud {
+      display: flex;
+      gap: 20px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+    }
+
+    .game-hud span { color: var(--text-muted); }
+    .game-hud strong { color: var(--gold); }
+
+    .hud-cobre strong { color: #e87b30; }
+    .hud-lives strong { color: #ef4444; }
+
+    #gameCanvas {
+      display: block;
+      width: 100%;
+      border-radius: 12px;
+      background: #0d0d1a;
+      cursor: none;
+    }
+
+    .game-controls {
+      margin-top: 16px;
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .game-over-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(10,10,15,0.92);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      z-index: 10;
+    }
+
+    .game-over-overlay h3 {
+      font-size: 2rem;
+      color: #ef4444;
+      margin-bottom: 8px;
+    }
+
+    .game-over-overlay p {
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .game-over-overlay .final-score {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.2rem;
+      color: var(--gold);
+      margin-bottom: 24px;
+    }
+
+    .canvas-container {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
+
     footer {
       text-align: center;
       padding: 40px 0;
@@ -353,14 +401,8 @@
     <div class="avatar">U</div>
     <h1>Ursu</h1>
     <p class="tagline">Web Developer · Romania 🇷🇴</p>
-    <div class="role">
-      <span class="dot"></span>
-      <span>GMV — Galileo Project</span>
-    </div>
-    <div class="galileo-badge">
-      <span>🛰️</span>
-      <span>European GNSS · Galileo</span>
-    </div>
+    <div class="role"><span class="dot"></span><span>GMV — Galileo Project</span></div>
+    <div class="galileo-badge"><span>🛰️</span><span>European GNSS · Galileo</span></div>
     <div class="hero-links">
       <a href="mailto:ursu@gmv.com" class="btn btn-primary">📬 Get in Touch</a>
       <a href="https://github.com" class="btn btn-secondary" target="_blank">GitHub</a>
@@ -433,14 +475,32 @@
   </div>
 </section>
 
-<!-- CONTACT -->
-<section>
-  <div class="container" style="text-align:center;">
-    <p class="section-label">// Contact</p>
-    <h2 class="section-title">Let's Build Together</h2>
-    <div class="contact-row">
-      <a href="mailto:ursu@gmv.com" class="btn btn-primary">📬 ursu@gmv.com</a>
-      <a href="https://linkedin.com" class="btn btn-secondary" target="_blank">LinkedIn</a>
+<!-- COPPER GAME -->
+<section id="game-section">
+  <div class="container">
+    <p class="section-label">// Game</p>
+    <h2 class="section-title">Cobre Rumano 🟠 — The Game</h2>
+    <div class="game-wrapper">
+      <div class="game-header">
+        <div class="game-hud">
+          <span class="hud-cobre">Cobre: <strong id="hud-cobre">0</strong> kg</span>
+          <span class="hud-lives">Vidas: <strong id="hud-lives">❤️❤️❤️</strong></span>
+          <span>Tiempo: <strong id="hud-time">60</strong>s</span>
+        </div>
+        <div class="game-controls">
+          <button class="btn btn-primary" id="btn-start">▶️ Jugar</button>
+        </div>
+      </div>
+      <div class="canvas-container">
+        <canvas id="gameCanvas" width="652" height="400"></canvas>
+        <div class="game-over-overlay" id="game-over" style="display:none;">
+          <h3>¡Game Over!</h3>
+          <p id="game-over-reason">Te pillaron sin cobre.</p>
+          <div class="final-score" id="final-score">0 kg de cobre recogido</div>
+          <button class="btn btn-primary" id="btn-restart">🔄 Otra vez</button>
+        </div>
+      </div>
+      <p style="text-align:center;margin-top:12px;color:var(--text-muted);font-size:0.8rem;font-family:'JetBrains Mono',monospace;">⬆️⬇️⬅️➡️ o WASD para moverse · Recoge el cobre · Evita a los polis 🫡</p>
     </div>
   </div>
 </section>
@@ -466,6 +526,385 @@
     <p>© 2026 Ursu · Web Developer at GMV · Galileo Project</p>
   </div>
 </footer>
+
+<script>
+// ─── COBRE RUMANO GAME ───────────────────────────────────────────────────────
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+const W = canvas.width;
+const H = canvas.height;
+
+// Game state
+let gameRunning = false;
+let score = 0;
+let lives = 3;
+let timeLeft = 60;
+let timerInterval = null;
+let animFrame = null;
+
+// Input
+const keys = {};
+window.addEventListener('keydown', e => {
+  keys[e.key] = true;
+  if (['ArrowUp','ArrowDown','ArrowLeft','ArrowRight',' '].includes(e.key)) e.preventDefault();
+});
+window.addEventListener('keyup', e => keys[e.key] = false);
+
+// Player
+const player = {
+  x: W / 2, y: H / 2,
+  size: 28,
+  speed: 4,
+  dir: 0, // facing direction for animation
+  frame: 0,
+  frameTimer: 0,
+};
+
+// Cobre pieces
+let cobres = [];
+const COBRE_COUNT = 6;
+
+// Polis
+let polis = [];
+const POLI_COUNT = 3;
+
+// Particles
+let particles = [];
+
+// ── Entities ──
+function spawnCobre() {
+  const margin = 40;
+  cobres.push({
+    x: margin + Math.random() * (W - margin * 2),
+    y: margin + Math.random() * (H - margin * 2),
+    size: 18,
+    bobOffset: Math.random() * Math.PI * 2,
+    collected: false,
+  });
+}
+
+function spawnPoli() {
+  const side = Math.floor(Math.random() * 4);
+  if (side === 0) return { x: Math.random() * W, y: -30, speed: 1.8 + Math.random() * 1.2, vx: 0, vy: 1 };
+  if (side === 1) return { x: W + 30, y: Math.random() * H, speed: 1.8 + Math.random() * 1.2, vx: -1, vy: 0 };
+  if (side === 2) return { x: Math.random() * W, y: H + 30, speed: 1.8 + Math.random() * 1.2, vx: 0, vy: -1 };
+  return { x: -30, y: Math.random() * H, speed: 1.8 + Math.random() * 1.2, vx: 1, vy: 0 };
+}
+
+function spawnParticle(x, y, color) {
+  for (let i = 0; i < 8; i++) {
+    const angle = Math.random() * Math.PI * 2;
+    const speed = 2 + Math.random() * 3;
+    particles.push({
+      x, y,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed,
+      life: 1,
+      color,
+      size: 3 + Math.random() * 4,
+    });
+  }
+}
+
+// ── Drawing helpers ──
+function drawPlayer(x, y, dir, frame) {
+  ctx.save();
+  ctx.translate(x, y);
+
+  // Body
+  ctx.fillStyle = '#e87b30';
+  ctx.beginPath();
+  ctx.ellipse(0, 4, 11, 14, 0, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Head
+  ctx.fillStyle = '#f5c4a0';
+  ctx.beginPath();
+  ctx.arc(0, -12, 9, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Hat ( Romanian traditional )
+  ctx.fillStyle = '#1a1a2e';
+  ctx.beginPath();
+  ctx.ellipse(0, -20, 12, 4, 0, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.fillRect(-8, -28, 16, 8);
+  ctx.beginPath();
+  ctx.ellipse(0, -28, 8, 3, 0, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Eyes
+  ctx.fillStyle = '#1a1a2e';
+  ctx.beginPath();
+  ctx.arc(-3, -13, 2, 0, Math.PI * 2);
+  ctx.arc(3, -13, 2, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Legs (simple walk cycle)
+  const legOffset = Math.sin(frame * 0.3) * 4;
+  ctx.fillStyle = '#2d2d4a';
+  ctx.fillRect(-7, 16, 5, 8 + legOffset);
+  ctx.fillRect(2, 16, 5, 8 - legOffset);
+
+  ctx.restore();
+}
+
+function drawCobre(x, y, size, time) {
+  const bob = Math.sin(time * 3 + x) * 3;
+  ctx.save();
+  ctx.translate(x, y + bob);
+
+  // Glow
+  ctx.shadowColor = '#e87b30';
+  ctx.shadowBlur = 12;
+
+  // Ingot shape
+  ctx.fillStyle = '#e87b30';
+  ctx.beginPath();
+  ctx.moveTo(-size, 0);
+  ctx.lineTo(-size * 0.6, -size * 0.7);
+  ctx.lineTo(size * 0.6, -size * 0.7);
+  ctx.lineTo(size, 0);
+  ctx.lineTo(size * 0.6, size * 0.7);
+  ctx.lineTo(-size * 0.6, size * 0.7);
+  ctx.closePath();
+  ctx.fill();
+
+  // Shine
+  ctx.fillStyle = 'rgba(255,220,150,0.5)';
+  ctx.beginPath();
+  ctx.ellipse(-size * 0.2, -size * 0.2, size * 0.25, size * 0.15, -0.5, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.shadowBlur = 0;
+  ctx.restore();
+}
+
+function drawPoli(x, y) {
+  ctx.save();
+  ctx.translate(x, y);
+
+  // Body
+  ctx.fillStyle = '#1e3a5f';
+  ctx.beginPath();
+  ctx.ellipse(0, 4, 11, 14, 0, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Head
+  ctx.fillStyle = '#f5c4a0';
+  ctx.beginPath();
+  ctx.arc(0, -12, 9, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Cap
+  ctx.fillStyle = '#1e3a5f';
+  ctx.fillRect(-10, -22, 20, 6);
+  ctx.beginPath();
+  ctx.ellipse(0, -22, 10, 3, 0, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Badge
+  ctx.fillStyle = '#f59e0b';
+  ctx.beginPath();
+  ctx.moveTo(6, -10);
+  ctx.lineTo(10, -10);
+  ctx.lineTo(10, -4);
+  ctx.lineTo(6, -4);
+  ctx.closePath();
+  ctx.fill();
+
+  // Eyes (stern)
+  ctx.fillStyle = '#1a1a2e';
+  ctx.fillRect(-5, -14, 4, 2);
+  ctx.fillRect(1, -14, 4, 2);
+
+  ctx.restore();
+}
+
+function drawParticle(p) {
+  ctx.globalAlpha = p.life;
+  ctx.fillStyle = p.color;
+  ctx.beginPath();
+  ctx.arc(p.x, p.y, p.size * p.life, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.globalAlpha = 1;
+}
+
+// ── Game loop ──
+let gameTime = 0;
+
+function update() {
+  if (!gameRunning) return;
+
+  gameTime += 0.016;
+
+  // Player movement
+  let dx = 0, dy = 0;
+  if (keys['ArrowLeft']  || keys['a'] || keys['A']) dx -= 1;
+  if (keys['ArrowRight'] || keys['d'] || keys['D']) dx += 1;
+  if (keys['ArrowUp']    || keys['w'] || keys['W']) dy -= 1;
+  if (keys['ArrowDown']  || keys['s'] || keys['S']) dy += 1;
+
+  if (dx !== 0 || dy !== 0) {
+    const len = Math.sqrt(dx*dx + dy*dy);
+    dx /= len; dy /= len;
+    player.x += dx * player.speed;
+    player.y += dy * player.speed;
+    player.frameTimer++;
+    if (player.frameTimer > 6) { player.frame++; player.frameTimer = 0; }
+  }
+
+  player.x = Math.max(player.size, Math.min(W - player.size, player.x));
+  player.y = Math.max(player.size, Math.min(H - player.size, player.y));
+
+  // Spawn cobre
+  const activeCobres = cobres.filter(c => !c.collected);
+  while (activeCobres.length < COBRE_COUNT) spawnCobre();
+
+  // Collect cobre
+  cobres.forEach(c => {
+    if (c.collected) return;
+    const dist = Math.hypot(player.x - c.x, player.y - c.y);
+    if (dist < player.size + c.size) {
+      c.collected = true;
+      score++;
+      document.getElementById('hud-cobre').textContent = score;
+      spawnParticle(c.x, c.y, '#e87b30');
+ }
+  });
+
+  // Respawn collected cobres
+  cobres = cobres.filter(c => !c.collected);
+
+  // Spawn more polis over time
+  const targetPolis = Math.min(POLI_COUNT + Math.floor(score / 5),6);
+  while (polis.length < targetPolis) polis.push(spawnPoli());
+
+  // Move polis
+  polis.forEach(p => {
+    p.x += p.vx * p.speed;
+    p.y += p.vy * p.speed;
+  });
+
+  // Remove off-screen polis and respawn
+  polis = polis.filter(p => p.x > -60 && p.x < W + 60 && p.y > -60 && p.y < H + 60);
+  while (polis.length < targetPolis) polis.push(spawnPoli());
+
+  // Collision with polis
+  polis.forEach(p => {
+    const dist = Math.hypot(player.x - p.x, player.y - p.y);
+    if (dist < player.size + 14) {
+      lives--;
+      document.getElementById('hud-lives').textContent = '❤️'.repeat(lives) + '🖤'.repeat(3 - lives);
+      spawnParticle(player.x, player.y, '#ef4444');
+      // Reset player to center
+      player.x = W / 2;
+      player.y = H / 2;
+      if (lives <= 0) endGame('Te han pillao, inspector. 🫡');
+    }
+  });
+
+  // Update particles
+  particles.forEach(p => {
+    p.x += p.vx;
+    p.y += p.vy;
+    p.vy += 0.1;
+    p.life -= 0.03;
+  });
+  particles = particles.filter(p => p.life > 0);
+}
+
+function draw() {
+  // Background
+  ctx.fillStyle = '#0d0d1a';
+  ctx.fillRect(0, 0, W, H);
+
+  // Grid / floor
+  ctx.strokeStyle = 'rgba(124,106,247,0.06)';
+  ctx.lineWidth = 1;
+  for (let x = 0; x < W; x += 40) {
+    ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+  }
+  for (let y = 0; y < H; y += 40) {
+    ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+  }
+
+  // Cobres
+  cobres.forEach(c => {
+    if (!c.collected) drawCobre(c.x, c.y, c.size, gameTime);
+  });
+
+  // Polis
+  polis.forEach(p => drawPoli(p.x, p.y));
+
+  // Player
+  drawPlayer(player.x, player.y, player.dir, player.frame);
+
+  // Particles
+  particles.forEach(drawParticle);
+}
+
+function gameLoop() {
+  update();
+  draw();
+  animFrame = requestAnimationFrame(gameLoop);
+}
+
+function startGame() {
+  score = 0;
+  lives = 3;
+  timeLeft = 60;
+  gameTime = 0;
+  cobres = [];
+  polis = [];
+  particles = [];
+  player.x = W / 2;
+  player.y = H / 2;
+  gameRunning = true;
+
+  document.getElementById('hud-cobre').textContent = '0';
+  document.getElementById('hud-lives').textContent = '❤️❤️❤️';
+  document.getElementById('hud-time').textContent = '60';
+  document.getElementById('game-over').style.display = 'none';
+  document.getElementById('btn-start').textContent = '⏸️ Pausa';
+
+  if (timerInterval) clearInterval(timerInterval);
+  timerInterval = setInterval(() => {
+    if (!gameRunning) return;
+    timeLeft--;
+    document.getElementById('hud-time').textContent = timeLeft;
+    if (timeLeft <= 0) {
+      endGame('⏰ ¡Se acabó el tiempo!');
+    }
+  }, 1000);
+
+  gameLoop();
+}
+
+function endGame(reason) {
+  gameRunning = false;
+  cancelAnimationFrame(animFrame);
+  clearInterval(timerInterval);
+  document.getElementById('game-over').style.display = 'flex';
+  document.getElementById('game-over-reason').textContent = reason;
+  document.getElementById('final-score').textContent = score + ' kg de cobre recogido 🟠';
+  document.getElementById('btn-start').textContent = '▶️ Jugar';
+}
+
+function toggleGame() {
+  if (!gameRunning) {
+    startGame();
+  } else {
+    endGame('⏸️ Pausado');
+  }
+}
+
+document.getElementById('btn-start').addEventListener('click', toggleGame);
+document.getElementById('btn-restart').addEventListener('click', startGame);
+
+// Initial draw (static)
+draw();
+</script>
 
 </body>
 </html>
