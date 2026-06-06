@@ -432,13 +432,14 @@
     .touch-dpad {
       display: grid;
       grid-template-columns: repeat(3, 60px);
-      grid-template-rows: repeat(2, 60px);
+      grid-template-rows: repeat(3, 60px);
       gap: 6px;
     }
 
-    .touch-dpad .touch-btn:nth-child(1) { grid-column: 2; grid-row: 1; }
-    .touch-dpad .touch-btn:nth-child(2) { grid-column: 1; grid-row: 2; }
-    .touch-dpad .touch-btn:nth-child(3) { grid-column: 3; grid-row: 2; }
+    .touch-dpad .touch-btn:nth-child(1) { grid-column: 2; grid-row: 1; }   /* up */
+    .touch-dpad .touch-btn:nth-child(2) { grid-column: 1; grid-row: 2; }   /* left */
+    .touch-dpad .touch-btn:nth-child(3) { grid-column: 2; grid-row: 2; }   /* down */
+    .touch-dpad .touch-btn:nth-child(4) { grid-column: 3; grid-row: 2; }   /* right */
 
     .touch-actions {
       display: flex;
@@ -564,6 +565,7 @@
         <div class="touch-dpad">
           <button class="touch-btn" id="btn-up">⬆️</button>
           <button class="touch-btn" id="btn-left">⬅️</button>
+          <button class="touch-btn" id="btn-down">⬇️</button>
           <button class="touch-btn" id="btn-right">➡️</button>
         </div>
         <div class="touch-actions">
@@ -950,8 +952,11 @@ document.getElementById('btn-restart').addEventListener('click', startGame);
 
 // Touch controls for mobile
 function handleTouch(action) {
+  if (!currentPiece) return;
   if (gameOver) { startGame(); return; }
   if (!gameRunning || paused) return;
+
+  let rotated;
   switch(action) {
     case 'left':
       if (validMove(currentPiece, -1, 0)) currentPiece.x--;
@@ -966,11 +971,11 @@ function handleTouch(action) {
       if (validMove(currentPiece, 0, 1)) currentPiece.y++;
       break;
     case 'rotate':
-      const rotated = rotate(currentPiece.shape);
+      rotated = rotate(currentPiece.shape);
       if (validMove(currentPiece, 0, 0, rotated)) currentPiece.shape = rotated;
       break;
     case 'drop':
-      while (validMove(currentPiece, 0, 1)) currentPiece.y++;
+      while (currentPiece && validMove(currentPiece, 0, 1)) currentPiece.y++;
       break;
   }
 }
