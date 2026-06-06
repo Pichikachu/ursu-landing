@@ -391,6 +391,64 @@
       .galileo-section { padding: 28px 20px; }
       .hero { padding: 40px 0; }
     }
+
+    /* Mobile touch controls */
+    .touch-controls {
+      display: none;
+      margin-top: 16px;
+      gap: 12px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .touch-btn {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 2px solid var(--accent);
+      color: var(--accent);
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      transition: background 0.1s;
+    }
+
+    .touch-btn:active {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    .touch-btn-wide {
+      width: 90px;
+      border-radius: 30px;
+    }
+
+    .touch-dpad {
+      display: grid;
+      grid-template-columns: repeat(3, 60px);
+      grid-template-rows: repeat(2, 60px);
+      gap: 6px;
+    }
+
+    .touch-dpad .touch-btn:nth-child(1) { grid-column: 2; grid-row: 1; }
+    .touch-dpad .touch-btn:nth-child(2) { grid-column: 1; grid-row: 2; }
+    .touch-dpad .touch-btn:nth-child(3) { grid-column: 3; grid-row: 2; }
+
+    .touch-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    @media (max-width: 768px) {
+      .touch-controls { display: flex; }
+    }
   </style>
 </head>
 <body>
@@ -500,7 +558,21 @@
           <button class="btn btn-primary" id="btn-restart">🔄 Otra vez</button>
         </div>
       </div>
-      <p style="text-align:center;margin-top:12px;color:var(--text-muted);font-size:0.8rem;font-family:'JetBrains Mono',monospace;">⬆️⬇️⬅️➡️ o WASD para moverse · Rotar con ↑ · Clear líneas para escapar 🫡</p>
+
+      <!-- Touch controls for mobile -->
+      <div class="touch-controls" id="touch-controls">
+        <div class="touch-dpad">
+          <button class="touch-btn" id="btn-up">⬆️</button>
+          <button class="touch-btn" id="btn-left">⬅️</button>
+          <button class="touch-btn" id="btn-right">➡️</button>
+        </div>
+        <div class="touch-actions">
+          <button class="touch-btn touch-btn-wide" id="btn-drop">⬇️ DROP</button>
+          <button class="touch-btn touch-btn-wide" id="btn-rotate">🔄 ROTATE</button>
+        </div>
+      </div>
+
+      <p id="instructions" style="text-align:center;margin-top:12px;color:var(--text-muted);font-size:0.8rem;font-family:'JetBrains Mono',monospace;">⬆️⬇️⬅️➡️ o WASD para moverse · Rotar con ↑ · Clear líneas para escapar 🫡</p>
     </div>
   </div>
 </section>
@@ -875,6 +947,48 @@ function toggleGame() {
 
 document.getElementById('btn-start').addEventListener('click', toggleGame);
 document.getElementById('btn-restart').addEventListener('click', startGame);
+
+// Touch controls for mobile
+function handleTouch(action) {
+  if (gameOver) { startGame(); return; }
+  if (!gameRunning || paused) return;
+  switch(action) {
+    case 'left':
+      if (validMove(currentPiece, -1, 0)) currentPiece.x--;
+      break;
+    case 'right':
+      if (validMove(currentPiece, 1, 0)) currentPiece.x++;
+      break;
+    case 'up':
+      if (validMove(currentPiece, 0, -1)) currentPiece.y--;
+      break;
+    case 'down':
+      if (validMove(currentPiece, 0, 1)) currentPiece.y++;
+      break;
+    case 'rotate':
+      const rotated = rotate(currentPiece.shape);
+      if (validMove(currentPiece, 0, 0, rotated)) currentPiece.shape = rotated;
+      break;
+    case 'drop':
+      while (validMove(currentPiece, 0, 1)) currentPiece.y++;
+      break;
+  }
+}
+
+document.getElementById('btn-left').addEventListener('touchstart', e => { e.preventDefault(); handleTouch('left'); });
+document.getElementById('btn-right').addEventListener('touchstart', e => { e.preventDefault(); handleTouch('right'); });
+document.getElementById('btn-up').addEventListener('touchstart', e => { e.preventDefault(); handleTouch('up'); });
+document.getElementById('btn-down').addEventListener('touchstart', e => { e.preventDefault(); handleTouch('down'); });
+document.getElementById('btn-rotate').addEventListener('touchstart', e => { e.preventDefault(); handleTouch('rotate'); });
+document.getElementById('btn-drop').addEventListener('touchstart', e => { e.preventDefault(); handleTouch('drop'); });
+
+// Mouse fallback for desktop touch controls
+document.getElementById('btn-left').addEventListener('mousedown', () => handleTouch('left'));
+document.getElementById('btn-right').addEventListener('mousedown', () => handleTouch('right'));
+document.getElementById('btn-up').addEventListener('mousedown', () => handleTouch('up'));
+document.getElementById('btn-down').addEventListener('mousedown', () => handleTouch('down'));
+document.getElementById('btn-rotate').addEventListener('mousedown', () => handleTouch('rotate'));
+document.getElementById('btn-drop').addEventListener('mousedown', () => handleTouch('drop'));
 
 document.addEventListener('keydown', e => {
   if (e.key === 'r' || e.key === 'R') {
